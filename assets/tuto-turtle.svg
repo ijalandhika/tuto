@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Tuto the turtle">
+  <defs>
+    <radialGradient id="tutoShell" cx="42%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#7BD89C"></stop>
+      <stop offset="55%" stop-color="#46C77A"></stop>
+      <stop offset="100%" stop-color="#2A9F5A"></stop>
+    </radialGradient>
+    <linearGradient id="tutoBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE2B0"></stop>
+      <stop offset="100%" stop-color="#F5BE74"></stop>
+    </linearGradient>
+    <radialGradient id="tutoCheek" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF8A7A" stop-opacity="0.85"></stop>
+      <stop offset="100%" stop-color="#FF8A7A" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  
+  <ellipse cx="50" cy="148" rx="14" ry="9" fill="url(#tutoBody)" stroke="#4A2E1F" stroke-width="3.5"></ellipse>
+  
+  <path d="M158 130 q 18 4 22 -8 q -10 -2 -22 -2 Z" fill="url(#tutoBody)" stroke="#4A2E1F" stroke-width="3.5" stroke-linejoin="round"></path>
+  
+  <ellipse cx="138" cy="156" rx="15" ry="9" fill="url(#tutoBody)" stroke="#4A2E1F" stroke-width="3.5"></ellipse>
+  
+  <ellipse cx="100" cy="138" rx="60" ry="18" fill="url(#tutoBody)" stroke="#4A2E1F" stroke-width="4"></ellipse>
+
+  
+  <path d="M40 118 C 40 78 70 54 100 54 C 130 54 160 78 160 118 C 160 132 145 138 100 138 C 55 138 40 132 40 118 Z" fill="url(#tutoShell)" stroke="#4A2E1F" stroke-width="4" stroke-linejoin="round"></path>
+  
+  <path d="M100 70 l 16 8 0 18 -16 8 -16 -8 0 -18 Z" fill="#2A9F5A" stroke="#4A2E1F" stroke-width="3" stroke-linejoin="round" opacity="0.85"></path>
+  <path d="M70 90 l 12 6 0 14 -12 6 -12 -6 0 -14 Z" fill="#2A9F5A" stroke="#4A2E1F" stroke-width="3" stroke-linejoin="round" opacity="0.7"></path>
+  <path d="M130 90 l 12 6 0 14 -12 6 -12 -6 0 -14 Z" fill="#2A9F5A" stroke="#4A2E1F" stroke-width="3" stroke-linejoin="round" opacity="0.7"></path>
+  
+  <ellipse cx="80" cy="74" rx="18" ry="6" fill="white" opacity="0.35"></ellipse>
+
+  
+  <ellipse cx="44" cy="118" rx="26" ry="22" fill="url(#tutoBody)" stroke="#4A2E1F" stroke-width="4"></ellipse>
+  
+  <circle cx="36" cy="114" r="4.5" fill="#4A2E1F"></circle>
+  <circle cx="34.5" cy="112.5" r="1.5" fill="white"></circle>
+  
+  <ellipse cx="46" cy="124" rx="7" ry="4" fill="url(#tutoCheek)"></ellipse>
+  
+  <path d="M30 124 q 6 5 14 2" fill="none" stroke="#4A2E1F" stroke-width="3" stroke-linecap="round"></path>
+</svg>
