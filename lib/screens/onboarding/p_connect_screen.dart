@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
 import '../../widgets/button.dart';
@@ -25,7 +24,6 @@ class PConnectScreen extends StatefulWidget {
 
 class _PConnectScreenState extends State<PConnectScreen> {
   late String _code;
-  bool _copied = false;
 
   @override
   void initState() {
@@ -191,20 +189,6 @@ class _PConnectScreenState extends State<PConnectScreen> {
 
                 Row(
                   children: [
-                    Expanded(
-                      child: LumioButton(
-                        variant: LumioButtonVariant.soft,
-                        full: true,
-                        onPressed: () {
-                          Clipboard.setData(ClipboardData(text: _code));
-                          setState(() => _copied = true);
-                          Future.delayed(const Duration(seconds: 2), () {
-                            if (mounted) setState(() => _copied = false);
-                          });
-                        },
-                        child: Text(_copied ? '✓ Copied!' : 'Copy code'),
-                      ),
-                    ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: LumioButton(

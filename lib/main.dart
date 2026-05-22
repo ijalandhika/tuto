@@ -99,6 +99,7 @@ class _AppShell extends StatefulWidget {
 class _AppShellState extends State<_AppShell> {
   _Screen _screen = _Screen.kickoff;
   _Tab _tab = _Tab.home;
+  final List<_Screen> _history = [];
 
   static const _tabScreens = {
     _Screen.map,
@@ -107,13 +108,43 @@ class _AppShellState extends State<_AppShell> {
     _Screen.me,
   };
 
+  static const _tabFor = {
+    _Screen.map: _Tab.home,
+    _Screen.library: _Tab.library,
+    _Screen.badges: _Tab.badges,
+    _Screen.me: _Tab.me,
+  };
+
   bool get _showTabBar => _tabScreens.contains(_screen);
 
-  void _goto(_Screen s) => setState(() => _screen = s);
+  void _goto(_Screen s) {
+    setState(() {
+      _history.add(_screen);
+      _screen = s;
+    });
+  }
+
+  void _goBack() {
+    if (_history.isEmpty) return;
+    setState(() {
+      _screen = _history.removeLast();
+      final t = _tabFor[_screen];
+      if (t != null) _tab = t;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (_, _) {
+        if (_history.isNotEmpty) {
+          _goBack();
+        } else {
+          SystemNavigator.pop();
+        }
+      },
+      child: Scaffold(
       backgroundColor: LumioColors.bg,
       body: SafeArea(
               bottom: false,
@@ -150,6 +181,7 @@ class _AppShellState extends State<_AppShell> {
                 ],
               ),
             ),
+      ),
     );
   }
 
