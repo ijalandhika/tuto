@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
 import '../widgets/button.dart';
+import '../widgets/icon.dart';
 import '../widgets/top_bar.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -156,8 +157,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      const Icon(Icons.volume_up_rounded,
-                          size: 16, color: LumioColors.accentDeep),
+                      const LumioIcon(LumioIconType.speaker, size: 16, color: LumioColors.accentDeep),
                       const SizedBox(width: 14),
                     ],
                   ),
@@ -573,8 +573,7 @@ class _ShelfHeader extends StatelessWidget {
                     color: LumioColors.accentDeep,
                   ),
                 ),
-                const Icon(Icons.chevron_right_rounded,
-                    size: 14, color: LumioColors.accentDeep),
+                const LumioIcon(LumioIconType.chevronRight, size: 14, color: LumioColors.accentDeep),
               ],
             ),
           ),

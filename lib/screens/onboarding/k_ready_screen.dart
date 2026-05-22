@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
 import '../../widgets/animations.dart';
+import '../../widgets/icon.dart';
 import '../../widgets/button.dart';
 
 class KReadyScreen extends StatefulWidget {
@@ -101,8 +102,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                         border: Border.all(
                             color: LumioColors.borderStrong, width: 2),
                       ),
-                      child: const Icon(Icons.arrow_back_rounded,
-                          size: 18, color: LumioColors.text),
+                      child: const LumioIcon(LumioIconType.back, size: 18),
                     ),
                   ),
                 ),
@@ -207,8 +207,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                           ],
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_ios_rounded,
-                          size: 14, color: LumioColors.textSoft),
+                      const LumioIcon(LumioIconType.chevronRight, size: 14, color: LumioColors.textSoft),
                     ],
                   ),
                 ),

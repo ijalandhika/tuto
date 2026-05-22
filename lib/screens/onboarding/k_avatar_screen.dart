@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
 import '../../widgets/button.dart';
+import '../../widgets/icon.dart';
 
 class KAvatarScreen extends StatefulWidget {
   final VoidCallback onBack;
@@ -41,8 +42,7 @@ class _KAvatarScreenState extends State<KAvatarScreen> {
                 shape: BoxShape.circle,
                 border: Border.all(color: LumioColors.borderStrong, width: 2),
               ),
-              child: const Icon(Icons.arrow_back_rounded,
-                  size: 18, color: LumioColors.text),
+              child: const LumioIcon(LumioIconType.back, size: 18),
             ),
           ),
           const SizedBox(height: 24),

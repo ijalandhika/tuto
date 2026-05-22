@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../widgets/icon.dart';
 
 
 class ParentDashboardScreen extends StatelessWidget {
@@ -32,8 +33,7 @@ class ParentDashboardScreen extends StatelessWidget {
                     border:
                         Border.all(color: LumioColors.borderStrong, width: 2),
                   ),
-                  child: const Icon(Icons.arrow_back_rounded,
-                      size: 18, color: LumioColors.text),
+                  child: const LumioIcon(LumioIconType.back, size: 18),
                 ),
               ),
               const SizedBox(width: 12),
@@ -396,8 +396,7 @@ class _ActionRow extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios_rounded,
-                size: 14, color: LumioColors.textSoft),
+            const LumioIcon(LumioIconType.chevronRight, size: 14, color: LumioColors.textSoft),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../widgets/icon.dart';
 
 class OnboardingTopBar extends StatelessWidget {
   final VoidCallback onBack;
@@ -24,7 +25,7 @@ class OnboardingTopBar extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: LumioColors.borderStrong, width: 2),
             ),
-            child: const Icon(Icons.arrow_back_rounded,
+            child: const LumioIcon(LumioIconType.back,
                 size: 18, color: LumioColors.text),
           ),
         ),

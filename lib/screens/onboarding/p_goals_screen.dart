@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
 import '../../widgets/button.dart';
+import '../../widgets/icon.dart';
 import 'onboarding_widgets.dart';
 
 class PGoalsScreen extends StatefulWidget {
@@ -149,8 +150,7 @@ class _PGoalsScreenState extends State<PGoalsScreen> {
                           ),
                         ),
                         child: sel
-                            ? const Icon(Icons.check_rounded,
-                                color: Colors.white, size: 14)
+                            ? const LumioIcon(LumioIconType.check, size: 14, color: Colors.white)
                             : null,
                       ),
                     ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
 import '../widgets/button.dart';
+import '../widgets/icon.dart';
 import '../widgets/path_node.dart';
 import '../widgets/progress_bar.dart';
 import '../widgets/speech_bubble.dart';
@@ -49,8 +50,7 @@ class MapScreen extends StatelessWidget {
             trailing: onParent != null
                 ? LumioIconButton(
                     variant: LumioButtonVariant.secondary,
-                    icon: const Icon(Icons.settings_outlined,
-                        color: LumioColors.text, size: 18),
+                    icon: const LumioIcon(LumioIconType.settings, size: 18),
                     onPressed: onParent,
                     size: 44,
                   )

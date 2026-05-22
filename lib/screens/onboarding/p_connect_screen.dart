@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
 import '../../widgets/button.dart';
+import '../../widgets/icon.dart';
 import 'onboarding_widgets.dart';
 
 class PConnectScreen extends StatefulWidget {
@@ -299,8 +300,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                       ],
                     ),
                   ),
-                  const Icon(Icons.arrow_forward_ios_rounded,
-                      size: 14, color: LumioColors.textSoft),
+                  const LumioIcon(LumioIconType.chevronRight, size: 14, color: LumioColors.textSoft),
                 ],
               ),
             ),

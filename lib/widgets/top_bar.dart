@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../design/tokens.dart';
 import 'button.dart';
 import 'chip.dart';
+import 'icon.dart';
 
 class TopBar extends StatelessWidget {
   final VoidCallback? onBack;
@@ -34,8 +34,7 @@ class TopBar extends StatelessWidget {
           if (onBack != null)
             LumioIconButton(
               variant: LumioButtonVariant.secondary,
-              icon: const Icon(Icons.arrow_back_rounded,
-                  color: LumioColors.text, size: 22),
+              icon: const LumioIcon(LumioIconType.back, size: 22),
               onPressed: onBack,
               size: 44,
             ),

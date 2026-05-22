@@ -14,7 +14,6 @@ import 'screens/onboarding/k_hello_screen.dart';
 import 'screens/onboarding/k_interests_screen.dart';
 import 'screens/onboarding/k_ready_screen.dart';
 import 'screens/onboarding/kickoff_screen.dart';
-import 'screens/onboarding/notification_screen.dart';
 import 'screens/onboarding/p_account_screen.dart';
 import 'screens/onboarding/p_connect_screen.dart';
 import 'screens/onboarding/p_goals_screen.dart';
@@ -58,7 +57,6 @@ class TutoApp extends StatelessWidget {
 
 enum _Screen {
   // Onboarding
-  notification,
   kickoff,
   pAccount,
   pKid,
@@ -99,7 +97,7 @@ class _AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<_AppShell> {
-  _Screen _screen = _Screen.notification;
+  _Screen _screen = _Screen.kickoff;
   _Tab _tab = _Tab.home;
 
   static const _tabScreens = {
@@ -111,17 +109,13 @@ class _AppShellState extends State<_AppShell> {
 
   bool get _showTabBar => _tabScreens.contains(_screen);
 
-  bool get _isLockScreen => _screen == _Screen.notification;
-
   void _goto(_Screen s) => setState(() => _screen = s);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: LumioColors.bg,
-      body: _isLockScreen
-          ? _buildScreen()
-          : SafeArea(
+      body: SafeArea(
               bottom: false,
               child: Stack(
                 children: [
@@ -162,11 +156,6 @@ class _AppShellState extends State<_AppShell> {
   Widget _buildScreen() {
     switch (_screen) {
       // ── Onboarding ──────────────────────────────────────────────────────
-      case _Screen.notification:
-        return NotificationScreen(
-          onOpen: () => _goto(_Screen.kickoff),
-          onDismiss: () => _goto(_Screen.kickoff),
-        );
       case _Screen.kickoff:
         return KickoffScreen(
           onParent: () => _goto(_Screen.pAccount),

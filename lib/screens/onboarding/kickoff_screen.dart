@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
 import '../../widgets/animations.dart';
+import '../../widgets/icon.dart';
 
 class KickoffScreen extends StatelessWidget {
   final VoidCallback onParent;
@@ -212,8 +213,7 @@ class _RoleCardState extends State<_RoleCard> {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios_rounded,
-                color: LumioColors.textSoft, size: 16),
+            const LumioIcon(LumioIconType.chevronRight, size: 16, color: LumioColors.textSoft),
           ],
         ),
       ),

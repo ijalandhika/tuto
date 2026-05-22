@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import 'icon.dart';
 
 enum PathNodeState { done, current, locked }
 
@@ -105,11 +106,9 @@ class _PathNodeState extends State<PathNode> {
                   child: Opacity(
                     opacity: isLocked ? 0.7 : 1.0,
                     child: isLocked
-                        ? const Icon(Icons.lock_rounded,
-                            color: Colors.white, size: 32)
+                        ? const LumioIcon(LumioIconType.lock, size: 32, color: Colors.white)
                         : isDone
-                            ? const Icon(Icons.check_rounded,
-                                color: Colors.white, size: 36)
+                            ? const LumioIcon(LumioIconType.check, size: 36, color: Colors.white)
                             : Text(widget.emoji,
                                 style: const TextStyle(fontSize: 38)),
                   ),

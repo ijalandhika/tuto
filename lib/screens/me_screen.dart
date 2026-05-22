@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../widgets/icon.dart';
 import '../widgets/top_bar.dart';
 
 class MeScreen extends StatelessWidget {
@@ -210,8 +211,7 @@ class _SettingRow extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios_rounded,
-                size: 14, color: LumioColors.textSoft),
+            const LumioIcon(LumioIconType.chevronRight, size: 14, color: LumioColors.textSoft),
           ],
         ),
       ),

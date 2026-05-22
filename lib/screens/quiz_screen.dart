@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
 import '../widgets/animations.dart';
 import '../widgets/button.dart';
+import '../widgets/icon.dart';
 import '../widgets/progress_bar.dart';
 import '../widgets/top_bar.dart';
 
@@ -157,8 +158,7 @@ class _QuizScreenState extends State<QuizScreen> {
             children: [
               LumioIconButton(
                 variant: LumioButtonVariant.audio,
-                icon: const Icon(Icons.volume_up_rounded,
-                    color: Colors.white, size: 22),
+                icon: const LumioIcon(LumioIconType.speaker, size: 22, color: Colors.white),
                 size: 56,
               ),
               const SizedBox(width: 10),
