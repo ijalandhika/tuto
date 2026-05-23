@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import '../../widgets/icon.dart';
 
@@ -25,6 +26,7 @@ class _KAvatarScreenState extends State<KAvatarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -82,7 +84,7 @@ class _KAvatarScreenState extends State<KAvatarScreen> {
 
           Center(
             child: Text(
-              'Pick your avatar!',
+              l10n.kAvatarTitle,
               style: GoogleFonts.nunito(
                 fontSize: 26,
                 fontWeight: FontWeight.w900,
@@ -93,7 +95,7 @@ class _KAvatarScreenState extends State<KAvatarScreen> {
           const SizedBox(height: 6),
           Center(
             child: Text(
-              'This is how you\'ll appear in Tuto.',
+              l10n.kAvatarSubtitle,
               style: GoogleFonts.nunito(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -153,7 +155,7 @@ class _KAvatarScreenState extends State<KAvatarScreen> {
             variant: LumioButtonVariant.primary,
             full: true,
             onPressed: widget.onNext,
-            child: Text('I pick ${_avatars[_selected]}  →'),
+            child: Text(l10n.kAvatarCta(_avatars[_selected])),
           ),
         ],
       ),

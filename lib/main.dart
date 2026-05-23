@@ -1,7 +1,11 @@
+import 'dart:developer' as developer;
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'design/tokens.dart';
+import 'l10n/app_localizations.dart';
 import 'screens/badges_screen.dart';
 import 'screens/lesson_intro_screen.dart';
 import 'screens/library_screen.dart';
@@ -27,6 +31,23 @@ import 'screens/weekly_report_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+    developer.log(
+      'Flutter framework error',
+      name: 'tuto',
+      error: details.exception,
+      stackTrace: details.stack,
+    );
+  };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    developer.log('Uncaught async error',
+        name: 'tuto', error: error, stackTrace: stack);
+    return true;
+  };
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
@@ -40,8 +61,10 @@ class TutoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tuto',
+      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: LumioColors.accent),
         scaffoldBackgroundColor: LumioColors.bg,

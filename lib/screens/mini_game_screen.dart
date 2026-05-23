@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/animations.dart';
 import '../widgets/button.dart';
 import '../widgets/icon.dart';
@@ -36,6 +37,7 @@ class _MiniGameScreenState extends State<MiniGameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -47,7 +49,7 @@ class _MiniGameScreenState extends State<MiniGameScreen> {
           const SizedBox(height: 16),
 
           Text(
-            'YOUR TURN',
+            l10n.miniGameEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -65,12 +67,12 @@ class _MiniGameScreenState extends State<MiniGameScreen> {
                 height: 1.15,
               ),
               children: [
-                const TextSpan(text: 'Tap '),
+                TextSpan(text: l10n.miniGamePromptStart),
                 TextSpan(
-                  text: 'Five stars',
+                  text: l10n.miniGamePromptHighlight,
                   style: const TextStyle(color: LumioColors.accentDeep),
                 ),
-                const TextSpan(text: ' to send to Tuto'),
+                TextSpan(text: l10n.miniGamePromptEnd),
               ],
             ),
           ),
@@ -102,7 +104,7 @@ class _MiniGameScreenState extends State<MiniGameScreen> {
                           color: LumioColors.textMuted,
                         ),
                         children: [
-                          const TextSpan(text: 'Tapped: '),
+                          TextSpan(text: l10n.miniGameTappedLabel),
                           TextSpan(
                             text: '${_tapped.length}',
                             style: GoogleFonts.nunito(
@@ -168,7 +170,7 @@ class _MiniGameScreenState extends State<MiniGameScreen> {
                   borderRadius: BorderRadius.circular(LumioRadius.md),
                 ),
                 child: Text(
-                  'Yes! Five shiny stars ✨',
+                  l10n.miniGameSuccess,
                   style: GoogleFonts.nunito(
                     fontSize: 15,
                     fontWeight: FontWeight.w800,
@@ -194,7 +196,7 @@ class _MiniGameScreenState extends State<MiniGameScreen> {
                   variant: LumioButtonVariant.primary,
                   full: true,
                   onPressed: _done ? widget.onNext : null,
-                  child: const Text('Next →'),
+                  child: Text(l10n.actionNext),
                 ),
               ),
             ],

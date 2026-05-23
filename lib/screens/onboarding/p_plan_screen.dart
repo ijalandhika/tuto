@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import 'onboarding_widgets.dart';
 
@@ -19,10 +20,19 @@ class _PPlanScreenState extends State<PPlanScreen> {
   final _days = <int>{1, 2, 3, 4, 5}; // Mon-Fri default
 
   static const _minuteOptions = [10, 15, 20, 30];
-  static const _dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final dayLabels = [
+      l10n.dayInitialMon,
+      l10n.dayInitialTue,
+      l10n.dayInitialWed,
+      l10n.dayInitialThu,
+      l10n.dayInitialFri,
+      l10n.dayInitialSat,
+      l10n.dayInitialSun,
+    ];
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
       child: Column(
@@ -33,7 +43,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
           const SizedBox(height: 24),
 
           Text(
-            'LEARNING PLAN',
+            l10n.pPlanEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -43,7 +53,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'How much time\neach day?',
+            l10n.pPlanTitle,
             style: GoogleFonts.nunito(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -53,7 +63,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Even 10 minutes a day builds big skills over time.',
+            l10n.pPlanSubtitle,
             style: GoogleFonts.nunito(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -64,7 +74,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
 
           // Minutes selector
           Text(
-            'Daily goal',
+            l10n.pPlanDailyGoal,
             style: GoogleFonts.nunito(
               fontSize: 13,
               fontWeight: FontWeight.w800,
@@ -114,7 +124,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
                             ),
                           ),
                           Text(
-                            'min',
+                            l10n.pPlanMinuteUnit,
                             style: GoogleFonts.nunito(
                               fontSize: 10,
                               fontWeight: FontWeight.w700,
@@ -136,7 +146,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
 
           // Day toggles
           Text(
-            'Which days?',
+            l10n.pPlanWhichDays,
             style: GoogleFonts.nunito(
               fontSize: 13,
               fontWeight: FontWeight.w800,
@@ -170,7 +180,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
                       ),
                       child: Center(
                         child: Text(
-                          _dayLabels[i],
+                          dayLabels[i],
                           style: GoogleFonts.nunito(
                             fontSize: 14,
                             fontWeight: FontWeight.w900,
@@ -203,7 +213,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    '$_minutes minutes, ${_days.length} days a week. That\'s a great plan!',
+                    l10n.pPlanSummary(_minutes, _days.length),
                     style: GoogleFonts.nunito(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -222,7 +232,7 @@ class _PPlanScreenState extends State<PPlanScreen> {
             variant: LumioButtonVariant.success,
             full: true,
             onPressed: _days.isNotEmpty ? widget.onFinish : null,
-            child: const Text("All set — let's go! 🚀"),
+            child: Text(l10n.pPlanCta),
           ),
         ],
       ),

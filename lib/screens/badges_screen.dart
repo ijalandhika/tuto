@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/top_bar.dart';
 
 class _Badge {
@@ -13,17 +14,20 @@ class _Badge {
       {this.earned = false, this.fresh = false});
 }
 
-const _badges = [
-  _Badge('🏆', 'Star Counter', 'Just earned!', earned: true, fresh: true),
-  _Badge('🐳', 'Sea Explorer', 'Whales lesson', earned: true),
-  _Badge('🦊', 'Brave Reader', '3 stories', earned: true),
-  _Badge('🔥', 'On Fire', '7 day streak', earned: true),
-  _Badge('🌋', 'Volcano Pal', 'Locked'),
-  _Badge('📖', 'Word Wizard', '100 words'),
-  _Badge('🌙', 'Night Owl', 'Read at night'),
-  _Badge('🎨', 'Colorful', 'All subjects'),
-  _Badge('⭐', 'Star Hoarder', '50 stars'),
-];
+List<_Badge> _badgesFor(AppLocalizations l10n) => [
+      _Badge('🏆', l10n.badgeStarCounter, l10n.badgeStarCounterSub,
+          earned: true, fresh: true),
+      _Badge('🐳', l10n.badgeSeaExplorer, l10n.badgeSeaExplorerSub,
+          earned: true),
+      _Badge('🦊', l10n.badgeBraveReader, l10n.badgeBraveReaderSub,
+          earned: true),
+      _Badge('🔥', l10n.badgeOnFire, l10n.badgeOnFireSub, earned: true),
+      _Badge('🌋', l10n.badgeVolcanoPal, l10n.badgeVolcanoPalSub),
+      _Badge('📖', l10n.badgeWordWizard, l10n.badgeWordWizardSub),
+      _Badge('🌙', l10n.badgeNightOwl, l10n.badgeNightOwlSub),
+      _Badge('🎨', l10n.badgeColorful, l10n.badgeColorfulSub),
+      _Badge('⭐', l10n.badgeStarHoarder, l10n.badgeStarHoarderSub),
+    ];
 
 class BadgesScreen extends StatelessWidget {
   final VoidCallback? onBack;
@@ -32,7 +36,9 @@ class BadgesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final earned = _badges.where((b) => b.earned).length;
+    final l10n = AppLocalizations.of(context);
+    final badges = _badgesFor(l10n);
+    final earned = badges.where((b) => b.earned).length;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
@@ -43,7 +49,7 @@ class BadgesScreen extends StatelessWidget {
           const SizedBox(height: 6),
 
           Text(
-            'YOUR COLLECTION',
+            l10n.badgesEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -53,7 +59,7 @@ class BadgesScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '$earned badges so far',
+            l10n.badgesCount(earned),
             style: GoogleFonts.nunito(
               fontSize: 30,
               fontWeight: FontWeight.w900,
@@ -66,14 +72,14 @@ class BadgesScreen extends StatelessWidget {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: _badges.length,
+            itemCount: badges.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               childAspectRatio: 0.85,
             ),
-            itemBuilder: (_, i) => _BadgeTile(badge: _badges[i]),
+            itemBuilder: (_, i) => _BadgeTile(badge: badges[i]),
           ),
         ],
       ),
@@ -167,7 +173,7 @@ class _BadgeTile extends StatelessWidget {
                 ],
               ),
               child: Text(
-                'NEW',
+                AppLocalizations.of(context).badgesNewTag,
                 style: GoogleFonts.nunito(
                   fontSize: 10,
                   fontWeight: FontWeight.w900,

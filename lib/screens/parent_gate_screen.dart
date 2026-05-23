@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/animations.dart';
 import '../widgets/icon.dart';
 
@@ -63,6 +64,7 @@ class _ParentGateScreenState extends State<ParentGateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -95,7 +97,7 @@ class _ParentGateScreenState extends State<ParentGateScreen> {
                   ),
                   const SizedBox(width: 14),
                   Text(
-                    'Parent zone',
+                    l10n.parentGateTitle,
                     style: GoogleFonts.nunito(
                       fontSize: 18,
                       fontWeight: FontWeight.w900,
@@ -125,7 +127,7 @@ class _ParentGateScreenState extends State<ParentGateScreen> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Solve to continue',
+                    l10n.parentGateSolve,
                     style: GoogleFonts.nunito(
                       fontSize: 22,
                       fontWeight: FontWeight.w900,
@@ -134,7 +136,7 @@ class _ParentGateScreenState extends State<ParentGateScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'This makes sure a grown-up is in control.',
+                    l10n.parentGateHint,
                     style: GoogleFonts.nunito(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,

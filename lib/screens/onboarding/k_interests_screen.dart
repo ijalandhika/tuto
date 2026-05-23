@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import '../../widgets/icon.dart';
 
@@ -21,23 +22,25 @@ class _Interest {
   const _Interest(this.emoji, this.label);
 }
 
-const _interests = [
-  _Interest('🦕', 'Dinosaurs'),
-  _Interest('🚀', 'Space'),
-  _Interest('🐋', 'Ocean'),
-  _Interest('🔬', 'Science'),
-  _Interest('🦸', 'Heroes'),
-  _Interest('🌿', 'Nature'),
-  _Interest('🎨', 'Art'),
-  _Interest('🎵', 'Music'),
-  _Interest('⚽', 'Sports'),
-];
+List<_Interest> _interestsFor(AppLocalizations l10n) => [
+      _Interest('🦕', l10n.interestDinosaurs),
+      _Interest('🚀', l10n.interestSpace),
+      _Interest('🐋', l10n.interestOcean),
+      _Interest('🔬', l10n.interestScience),
+      _Interest('🦸', l10n.interestHeroes),
+      _Interest('🌿', l10n.interestNature),
+      _Interest('🎨', l10n.interestArt),
+      _Interest('🎵', l10n.interestMusic),
+      _Interest('⚽', l10n.interestSports),
+    ];
 
 class _KInterestsScreenState extends State<KInterestsScreen> {
   final _selected = <int>{};
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final interests = _interestsFor(l10n);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -60,7 +63,7 @@ class _KInterestsScreenState extends State<KInterestsScreen> {
           const SizedBox(height: 24),
 
           Text(
-            'WHAT DO YOU LOVE?',
+            l10n.kInterestsEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -70,7 +73,7 @@ class _KInterestsScreenState extends State<KInterestsScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Pick your favourites!',
+            l10n.kInterestsTitle,
             style: GoogleFonts.nunito(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -80,7 +83,7 @@ class _KInterestsScreenState extends State<KInterestsScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Tuto will weave them into your lessons.',
+            l10n.kInterestsSubtitle,
             style: GoogleFonts.nunito(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -92,7 +95,7 @@ class _KInterestsScreenState extends State<KInterestsScreen> {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: _interests.length,
+            itemCount: interests.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 10,
@@ -100,7 +103,7 @@ class _KInterestsScreenState extends State<KInterestsScreen> {
               childAspectRatio: 0.95,
             ),
             itemBuilder: (_, i) {
-              final it = _interests[i];
+              final it = interests[i];
               final sel = _selected.contains(i);
               return GestureDetector(
                 onTap: () => setState(() =>
@@ -178,7 +181,7 @@ class _KInterestsScreenState extends State<KInterestsScreen> {
             variant: LumioButtonVariant.primary,
             full: true,
             onPressed: _selected.isNotEmpty ? widget.onNext : null,
-            child: const Text("That's me! →"),
+            child: Text(l10n.kInterestsCta),
           ),
         ],
       ),

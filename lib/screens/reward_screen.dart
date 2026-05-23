@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/animations.dart';
 import '../widgets/button.dart';
 import '../widgets/chip.dart';
@@ -57,6 +58,7 @@ class _RewardScreenState extends State<RewardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Stack(
       children: [
         // Radial bg
@@ -109,7 +111,7 @@ class _RewardScreenState extends State<RewardScreen> {
               ),
               const SizedBox(height: 12),
               Text(
-                'QUEST COMPLETE',
+                l10n.rewardEyebrow,
                 style: GoogleFonts.nunito(
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
@@ -119,7 +121,7 @@ class _RewardScreenState extends State<RewardScreen> {
               ),
               const SizedBox(height: 6),
               Text(
-                'Treasure found!',
+                l10n.rewardTitle,
                 style: GoogleFonts.nunito(
                   fontSize: 36,
                   fontWeight: FontWeight.w900,
@@ -130,7 +132,7 @@ class _RewardScreenState extends State<RewardScreen> {
               ),
               const SizedBox(height: 6),
               Text(
-                'You counted, you read, you crushed it.',
+                l10n.rewardSubtitle,
                 style: GoogleFonts.nunito(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -146,23 +148,23 @@ class _RewardScreenState extends State<RewardScreen> {
                 spacing: 8,
                 runSpacing: 8,
                 alignment: WrapAlignment.center,
-                children: const [
+                children: [
                   LumioChip(
                     variant: LumioChipVariant.star,
-                    icon: Text('★',
+                    icon: const Text('★',
                         style: TextStyle(
                             fontSize: 12, color: Color(0xFFE0A310))),
-                    label: '+3 stars',
+                    label: l10n.rewardChipStars,
                   ),
                   LumioChip(
                     variant: LumioChipVariant.badge,
-                    icon: Text('🏆', style: TextStyle(fontSize: 12)),
-                    label: 'Star Counter',
+                    icon: const Text('🏆', style: TextStyle(fontSize: 12)),
+                    label: l10n.badgeStarCounter,
                   ),
                   LumioChip(
                     variant: LumioChipVariant.streak,
-                    icon: Text('🔥', style: TextStyle(fontSize: 12)),
-                    label: '8 day streak!',
+                    icon: const Text('🔥', style: TextStyle(fontSize: 12)),
+                    label: l10n.rewardChipStreak,
                   ),
                 ],
               ),
@@ -208,7 +210,7 @@ class _RewardScreenState extends State<RewardScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'NEW BADGE',
+                            l10n.rewardNewBadgeLabel,
                             style: GoogleFonts.nunito(
                               fontSize: 10,
                               fontWeight: FontWeight.w800,
@@ -217,7 +219,7 @@ class _RewardScreenState extends State<RewardScreen> {
                             ),
                           ),
                           Text(
-                            'Star Counter',
+                            l10n.badgeStarCounter,
                             style: GoogleFonts.nunito(
                               fontSize: 17,
                               fontWeight: FontWeight.w900,
@@ -225,7 +227,7 @@ class _RewardScreenState extends State<RewardScreen> {
                             ),
                           ),
                           Text(
-                            'Counted Five stars in one go.',
+                            l10n.rewardBadgeDesc,
                             style: GoogleFonts.nunito(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -244,13 +246,13 @@ class _RewardScreenState extends State<RewardScreen> {
                 variant: LumioButtonVariant.primary,
                 full: true,
                 onPressed: widget.onContinue,
-                child: const Text('Keep going!'),
+                child: Text(l10n.rewardContinue),
               ),
               const SizedBox(height: 10),
               LumioButton(
                 variant: LumioButtonVariant.ghost,
                 onPressed: widget.onBadges,
-                child: const Text('See all badges'),
+                child: Text(l10n.rewardSeeBadges),
               ),
             ],
           ),

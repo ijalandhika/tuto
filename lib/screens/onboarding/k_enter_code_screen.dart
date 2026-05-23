@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/animations.dart';
 import '../../widgets/icon.dart';
 import '../../widgets/button.dart';
@@ -79,6 +80,7 @@ class _KEnterCodeScreenState extends State<KEnterCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(
         gradient: RadialGradient(
@@ -124,7 +126,7 @@ class _KEnterCodeScreenState extends State<KEnterCodeScreen> {
               const SizedBox(height: 16),
 
               Text(
-                'Got a code from your\ngrown-up?',
+                l10n.kEnterCodeTitle,
                 style: GoogleFonts.nunito(
                   fontSize: 26,
                   fontWeight: FontWeight.w900,
@@ -135,7 +137,7 @@ class _KEnterCodeScreenState extends State<KEnterCodeScreen> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Type the 6 numbers they gave you below.',
+                l10n.kEnterCodeSubtitle,
                 style: GoogleFonts.nunito(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -168,7 +170,7 @@ class _KEnterCodeScreenState extends State<KEnterCodeScreen> {
               if (_error) ...[
                 const SizedBox(height: 14),
                 Text(
-                  "Hmm, that code didn't work. Try again? 💛",
+                  l10n.kEnterCodeError,
                   style: GoogleFonts.nunito(
                     fontSize: 14,
                     fontWeight: FontWeight.w800,
@@ -204,19 +206,15 @@ class _KEnterCodeScreenState extends State<KEnterCodeScreen> {
                             height: 1.5,
                           ),
                           children: [
-                            const TextSpan(
-                                text:
-                                    'Ask a grown-up. They can find the code on '),
+                            TextSpan(text: l10n.kEnterCodeTipStart),
                             TextSpan(
-                              text: 'their phone',
+                              text: l10n.kEnterCodeTipBold,
                               style: GoogleFonts.nunito(
                                 fontWeight: FontWeight.w900,
                                 color: LumioColors.text,
                               ),
                             ),
-                            const TextSpan(
-                                text:
-                                    ' in the setup screen — or in Settings → Add another device.'),
+                            TextSpan(text: l10n.kEnterCodeTipEnd),
                           ],
                         ),
                       ),
@@ -231,11 +229,11 @@ class _KEnterCodeScreenState extends State<KEnterCodeScreen> {
                 variant: LumioButtonVariant.secondary,
                 full: true,
                 onPressed: widget.onBack,
-                child: const Text("I don't have a code yet"),
+                child: Text(l10n.kEnterCodeNoCode),
               ),
               const SizedBox(height: 10),
               Text(
-                'A grown-up has to set up Tuto first 🐢',
+                l10n.kEnterCodeFootnote,
                 style: GoogleFonts.nunito(
                   fontSize: 11,
                   fontWeight: FontWeight.w700,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/button.dart';
 import '../widgets/icon.dart';
 import '../widgets/top_bar.dart';
@@ -22,14 +23,14 @@ class _Subject {
   const _Subject(this.id, this.emoji, this.label);
 }
 
-const _subjects = [
-  _Subject('all', '✨', 'For you'),
-  _Subject('reading', '📖', 'Reading'),
-  _Subject('science', '🔬', 'Science'),
-  _Subject('math', '🔢', 'Math'),
-  _Subject('world', '🌍', 'World'),
-  _Subject('art', '🎨', 'Art'),
-];
+List<_Subject> _subjectsFor(AppLocalizations l10n) => [
+      _Subject('all', '✨', l10n.subjectForYou),
+      _Subject('reading', '📖', l10n.subjectReading),
+      _Subject('science', '🔬', l10n.subjectScience),
+      _Subject('math', '🔢', l10n.subjectMath),
+      _Subject('world', '🌍', l10n.subjectWorld),
+      _Subject('art', '🎨', l10n.subjectArt),
+    ];
 
 class _ContinueItem {
   final String emoji;
@@ -39,11 +40,12 @@ class _ContinueItem {
   const _ContinueItem(this.emoji, this.title, this.sub, this.pct);
 }
 
-const _continueRow = [
-  _ContinueItem('🐳', 'Whales of the deep sea', 'Science · 4 min left', 65),
-  _ContinueItem('🦊', 'The brave little fox', 'Reading · 2 min left', 80),
-  _ContinueItem('🔢', 'Counting stars', 'Math · just started', 15),
-];
+List<_ContinueItem> _continueRowFor(AppLocalizations l10n) => [
+      _ContinueItem('🐳', l10n.libContinueWhales, l10n.libContinueWhalesSub, 65),
+      _ContinueItem('🦊', l10n.libContinueFox, l10n.libContinueFoxSub, 80),
+      _ContinueItem(
+          '🔢', l10n.libContinueCounting, l10n.libContinueCountingSub, 15),
+    ];
 
 class _CollectionItem {
   final String emoji;
@@ -63,32 +65,55 @@ class _Collection {
   const _Collection(this.title, this.sub, this.items);
 }
 
-const _collections = [
-  _Collection('Amazing animals', '8 lessons', [
-    _CollectionItem('🐳', 'Whales', [Color(0xFFB8E6FF), Color(0xFFE1F4FF)], 8, level: 'New'),
-    _CollectionItem('🦁', 'Lions', [Color(0xFFFFE6C2), Color(0xFFFFF1C9)], 6, level: 'Easy'),
-    _CollectionItem('🐢', 'Sea turtles', [Color(0xFFC8F1DD), Color(0xFFDDF6E7)], 7),
-    _CollectionItem('🦋', 'Butterflies', [Color(0xFFFFD9EA), Color(0xFFFFE4DF)], 5),
-  ]),
-  _Collection('Bedtime stories', '12 stories', [
-    _CollectionItem('🦊', 'Brave little fox', [Color(0xFFFFE4DF), Color(0xFFFFF1C9)], 6, level: '★★☆'),
-    _CollectionItem('🌙', 'Moon and the rabbit', [Color(0xFFE0DAFF), Color(0xFFEFEAFF)], 8, level: '★★★'),
-    _CollectionItem('🐻', 'Bear who sang', [Color(0xFFFFE6C2), Color(0xFFFFE4DF)], 5, level: '★☆☆'),
-    _CollectionItem('🗼', 'Lighthouse keeper', [Color(0xFFFFD3CB), Color(0xFFFFE4DF)], 7, level: 'New'),
-  ]),
-  _Collection('Why is that?', '6 explainers', [
-    _CollectionItem('🌋', 'Why volcanoes erupt', [Color(0xFFFFD3CB), Color(0xFFFFE6C2)], 6),
-    _CollectionItem('🌈', 'How rainbows happen', [Color(0xFFE1F4FF), Color(0xFFFFE4DF)], 5),
-    _CollectionItem('⭐', 'Why stars twinkle', [Color(0xFF2D1B4E), Color(0xFF5638E0)], 6, dark: true),
-    _CollectionItem('🍯', 'How bees make honey', [Color(0xFFFFF1C9), Color(0xFFFFE6C2)], 4),
-  ]),
-];
+List<_Collection> _collectionsFor(AppLocalizations l10n) => [
+      _Collection(l10n.libColAnimals, l10n.libColAnimalsSub, [
+        _CollectionItem('🐳', l10n.libItemWhales,
+            const [Color(0xFFB8E6FF), Color(0xFFE1F4FF)], 8,
+            level: l10n.levelNew),
+        _CollectionItem('🦁', l10n.libItemLions,
+            const [Color(0xFFFFE6C2), Color(0xFFFFF1C9)], 6,
+            level: l10n.levelEasy),
+        _CollectionItem('🐢', l10n.libItemSeaTurtles,
+            const [Color(0xFFC8F1DD), Color(0xFFDDF6E7)], 7),
+        _CollectionItem('🦋', l10n.libItemButterflies,
+            const [Color(0xFFFFD9EA), Color(0xFFFFE4DF)], 5),
+      ]),
+      _Collection(l10n.libColBedtime, l10n.libColBedtimeSub, [
+        _CollectionItem('🦊', l10n.libItemFox,
+            const [Color(0xFFFFE4DF), Color(0xFFFFF1C9)], 6,
+            level: '★★☆'),
+        _CollectionItem('🌙', l10n.libItemMoon,
+            const [Color(0xFFE0DAFF), Color(0xFFEFEAFF)], 8,
+            level: '★★★'),
+        _CollectionItem('🐻', l10n.libItemBear,
+            const [Color(0xFFFFE6C2), Color(0xFFFFE4DF)], 5,
+            level: '★☆☆'),
+        _CollectionItem('🗼', l10n.libItemLighthouse,
+            const [Color(0xFFFFD3CB), Color(0xFFFFE4DF)], 7,
+            level: l10n.levelNew),
+      ]),
+      _Collection(l10n.libColWhy, l10n.libColWhySub, [
+        _CollectionItem('🌋', l10n.libItemVolcano,
+            const [Color(0xFFFFD3CB), Color(0xFFFFE6C2)], 6),
+        _CollectionItem('🌈', l10n.libItemRainbow,
+            const [Color(0xFFE1F4FF), Color(0xFFFFE4DF)], 5),
+        _CollectionItem('⭐', l10n.libItemStars,
+            const [Color(0xFF2D1B4E), Color(0xFF5638E0)], 6,
+            dark: true),
+        _CollectionItem('🍯', l10n.libItemBees,
+            const [Color(0xFFFFF1C9), Color(0xFFFFE6C2)], 4),
+      ]),
+    ];
 
 class _LibraryScreenState extends State<LibraryScreen> {
   String _tab = 'all';
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final subjects = _subjectsFor(l10n);
+    final continueRow = _continueRowFor(l10n);
+    final collections = _collectionsFor(l10n);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +126,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 TopBar(streak: 7, stars: 24, hearts: 5),
                 const SizedBox(height: 4),
                 Text(
-                  'LIBRARY',
+                  l10n.libraryEyebrow,
                   style: GoogleFonts.nunito(
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
@@ -111,7 +136,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'What sounds fun today?',
+                  l10n.libraryTitle,
                   style: GoogleFonts.nunito(
                     fontSize: 28,
                     fontWeight: FontWeight.w900,
@@ -139,7 +164,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       Expanded(
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Search lessons, stories…',
+                            hintText: l10n.librarySearchHint,
                             hintStyle: GoogleFonts.nunito(
                               fontSize: 15,
                               fontWeight: FontWeight.w700,
@@ -173,10 +198,10 @@ class _LibraryScreenState extends State<LibraryScreen> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: _subjects.length,
+              itemCount: subjects.length,
               separatorBuilder: (_, _) => const SizedBox(width: 8),
               itemBuilder: (_, i) {
-                final s = _subjects[i];
+                final s = subjects[i];
                 final sel = _tab == s.id;
                 return GestureDetector(
                   onTap: () => setState(() => _tab = s.id),
@@ -254,12 +279,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           Row(
                             children: [
                               _SmallBadge(
-                                  label: 'FEATURED',
+                                  label: l10n.libraryFeaturedTag,
                                   color: LumioColors.accentDeep,
                                   bg: LumioColors.accentSoft),
                               const SizedBox(width: 6),
                               _SmallBadge(
-                                  label: '📖 Reading',
+                                  label: l10n.libraryFeaturedSubject,
                                   color: LumioColors.text,
                                   bg: Colors.white.withValues(alpha: 0.8)),
                             ],
@@ -268,7 +293,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.6,
                             child: Text(
-                              'The Lighthouse Keeper',
+                              l10n.libraryFeaturedTitle,
                               style: GoogleFonts.nunito(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900,
@@ -279,7 +304,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'A 7-minute story about courage',
+                            l10n.libraryFeaturedDesc,
                             style: GoogleFonts.nunito(
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
@@ -302,7 +327,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                               ],
                             ),
                             child: Text(
-                              '▶  Listen now',
+                              l10n.libraryListenNow,
                               style: GoogleFonts.nunito(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w900,
@@ -322,8 +347,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
           // Continue learning
           _ShelfHeader(
-              title: 'Pick up where you left off',
-              sub: '3 in progress',
+              title: l10n.libraryContinueTitle,
+              sub: l10n.libraryContinueSub,
               onSeeAll: () {}),
           const SizedBox(height: 10),
           SizedBox(
@@ -331,10 +356,10 @@ class _LibraryScreenState extends State<LibraryScreen> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: _continueRow.length,
+              itemCount: continueRow.length,
               separatorBuilder: (_, _) => const SizedBox(width: 12),
               itemBuilder: (_, i) {
-                final c = _continueRow[i];
+                final c = continueRow[i];
                 return GestureDetector(
                   onTap: widget.onPick,
                   child: Container(
@@ -404,7 +429,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
           const SizedBox(height: 22),
 
           // Collections
-          for (final col in _collections) ...[
+          for (final col in collections) ...[
             _ShelfHeader(
                 title: col.title, sub: col.sub, onSeeAll: () {}),
             const SizedBox(height: 10),
@@ -450,7 +475,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'TUTO PICKS',
+                          l10n.libraryTipLabel,
                           style: GoogleFonts.nunito(
                             fontSize: 10,
                             fontWeight: FontWeight.w800,
@@ -459,7 +484,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           ),
                         ),
                         Text(
-                          'Want a daily surprise?',
+                          l10n.libraryTipTitle,
                           style: GoogleFonts.nunito(
                             fontSize: 14,
                             fontWeight: FontWeight.w900,
@@ -467,7 +492,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           ),
                         ),
                         Text(
-                          "I'll mix something new with your favorites.",
+                          l10n.libraryTipDesc,
                           style: GoogleFonts.nunito(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -482,7 +507,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     variant: LumioButtonVariant.primary,
                     size: LumioButtonSize.sm,
                     onPressed: () {},
-                    child: const Text('Try it'),
+                    child: Text(l10n.libraryTipCta),
                   ),
                 ],
               ),
@@ -566,7 +591,7 @@ class _ShelfHeader extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'See all',
+                  AppLocalizations.of(context).librarySeeAll,
                   style: GoogleFonts.nunito(
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
@@ -648,7 +673,7 @@ class _LibraryCard extends StatelessWidget {
                   ),
                 const Spacer(),
                 Text(
-                  '⏱ ${item.minutes} min',
+                  AppLocalizations.of(context).libraryCardMinutes(item.minutes),
                   style: GoogleFonts.nunito(
                     fontSize: 13,
                     fontWeight: FontWeight.w800,

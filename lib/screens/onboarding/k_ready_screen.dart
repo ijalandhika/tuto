@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/animations.dart';
 import '../../widgets/icon.dart';
 import '../../widgets/button.dart';
@@ -47,6 +48,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Stack(
       children: [
         Container(
@@ -119,7 +121,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                 const SizedBox(height: 16),
 
                 Text(
-                  "YOU'RE ALL SET!",
+                  l10n.kReadyEyebrow,
                   style: GoogleFonts.nunito(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
@@ -129,7 +131,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Ready for your first quest?',
+                  l10n.kReadyTitle,
                   style: GoogleFonts.nunito(
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
@@ -140,7 +142,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Tuto is waiting for you on the map.\nLet the adventure begin!",
+                  l10n.kReadySubtitle,
                   style: GoogleFonts.nunito(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -188,7 +190,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'FIRST QUEST',
+                              l10n.kReadyFirstQuestLabel,
                               style: GoogleFonts.nunito(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w800,
@@ -197,7 +199,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                               ),
                             ),
                             Text(
-                              'Whales of the Deep',
+                              l10n.kReadyFirstQuestTitle,
                               style: GoogleFonts.nunito(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w900,
@@ -218,7 +220,7 @@ class _KReadyScreenState extends State<KReadyScreen> {
                   variant: LumioButtonVariant.warning,
                   full: true,
                   onPressed: widget.onFinish,
-                  child: const Text('Start my adventure! 🚀'),
+                  child: Text(l10n.kReadyCta),
                 ),
               ],
             ),

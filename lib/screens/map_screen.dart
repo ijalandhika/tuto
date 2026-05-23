@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/button.dart';
 import '../widgets/icon.dart';
 import '../widgets/path_node.dart';
@@ -18,14 +19,20 @@ class _NodeData {
       this.emoji, this.label, this.subject, this.state, this.xOffset);
 }
 
-const _nodes = [
-  _NodeData('🐳', 'Whales', 'Science', PathNodeState.done, 0),
-  _NodeData('🦊', 'Fox tale', 'Reading', PathNodeState.done, 38),
-  _NodeData('🔢', 'Counting', 'Math', PathNodeState.current, 0),
-  _NodeData('🌋', 'Volcano', 'Science', PathNodeState.locked, -38),
-  _NodeData('📖', 'Rhymes', 'Reading', PathNodeState.locked, 0),
-  _NodeData('🏆', 'Treasure', 'Bonus', PathNodeState.locked, 38),
-];
+List<_NodeData> _nodesFor(AppLocalizations l10n) => [
+      _NodeData('🐳', l10n.mapNodeWhales, l10n.subjectScience,
+          PathNodeState.done, 0),
+      _NodeData('🦊', l10n.mapNodeFoxTale, l10n.subjectReading,
+          PathNodeState.done, 38),
+      _NodeData('🔢', l10n.mapNodeCounting, l10n.subjectMath,
+          PathNodeState.current, 0),
+      _NodeData('🌋', l10n.mapNodeVolcano, l10n.subjectScience,
+          PathNodeState.locked, -38),
+      _NodeData('📖', l10n.mapNodeRhymes, l10n.subjectReading,
+          PathNodeState.locked, 0),
+      _NodeData('🏆', l10n.mapNodeTreasure, l10n.subjectBonus,
+          PathNodeState.locked, 38),
+    ];
 
 class MapScreen extends StatelessWidget {
   final VoidCallback onStartLesson;
@@ -39,6 +46,8 @@ class MapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final nodes = _nodesFor(l10n);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
       child: Column(
@@ -89,7 +98,7 @@ class MapScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "TODAY'S QUEST",
+                        l10n.mapQuestLabel,
                         style: GoogleFonts.nunito(
                           fontSize: 11,
                           fontWeight: FontWeight.w800,
@@ -99,7 +108,7 @@ class MapScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        '3 lessons to find the treasure',
+                        l10n.mapQuestTitle,
                         style: GoogleFonts.nunito(
                           fontSize: 17,
                           fontWeight: FontWeight.w900,
@@ -137,16 +146,16 @@ class MapScreen extends StatelessWidget {
           ),
 
           // ── Tuto speech bubble ───────────────────────────────────────
-          const SpeechBubble(
+          SpeechBubble(
             speaking: true,
             small: true,
-            text: "Slow and steady — let's count some stars together.",
+            text: l10n.mapSpeech,
           ),
 
           const SizedBox(height: 36),
 
           // ── Zigzag path ──────────────────────────────────────────────
-          for (final n in _nodes) ...[
+          for (final n in nodes) ...[
             Transform.translate(
               offset: Offset(n.xOffset, 0),
               child: PathNode(
@@ -169,7 +178,7 @@ class MapScreen extends StatelessWidget {
                   width: 24, height: 1, color: LumioColors.borderStrong),
               const SizedBox(width: 8),
               Text(
-                'finish all to unlock treasure',
+                l10n.mapTreasureHint,
                 style: GoogleFonts.nunito(
                   fontSize: 13,
                   fontWeight: FontWeight.w800,

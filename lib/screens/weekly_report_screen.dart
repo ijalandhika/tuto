@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/icon.dart';
 
 class WeeklyReportScreen extends StatelessWidget {
@@ -11,6 +12,8 @@ class WeeklyReportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final highlights = _highlightsFor(l10n);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -35,7 +38,7 @@ class WeeklyReportScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Weekly Report',
+                l10n.weeklyReportTitle,
                 style: GoogleFonts.nunito(
                   fontSize: 22,
                   fontWeight: FontWeight.w900,
@@ -73,7 +76,7 @@ class WeeklyReportScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'TUTO SAYS',
+                        l10n.weeklyTutoSaysLabel,
                         style: GoogleFonts.nunito(
                           fontSize: 10,
                           fontWeight: FontWeight.w800,
@@ -83,7 +86,7 @@ class WeeklyReportScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "Maya is really finding her groove! She improved her reading speed by 15% and attempted maths every single day.",
+                        l10n.weeklyTutoSaysText,
                         style: GoogleFonts.nunito(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
@@ -101,7 +104,7 @@ class WeeklyReportScreen extends StatelessWidget {
 
           // Highlights
           Text(
-            'HIGHLIGHTS',
+            l10n.weeklyHighlightsLabel,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -111,7 +114,7 @@ class WeeklyReportScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
 
-          ..._highlights.map((h) => Padding(
+          ...highlights.map((h) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -148,7 +151,7 @@ class WeeklyReportScreen extends StatelessWidget {
 
           // 2×2 stats grid
           Text(
-            'THIS WEEK',
+            l10n.weeklyThisWeekLabel,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -165,11 +168,11 @@ class WeeklyReportScreen extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 1.6,
-            children: const [
-              _WeekStat(emoji: '⏱', value: '68 min', label: 'Learning time'),
-              _WeekStat(emoji: '📘', value: '3', label: 'Lessons done'),
-              _WeekStat(emoji: '⭐', value: '+12', label: 'Stars earned'),
-              _WeekStat(emoji: '🏆', value: '1 new', label: 'Badge unlocked'),
+            children: [
+              _WeekStat(emoji: '⏱', value: l10n.weeklyStatTimeValue, label: l10n.weeklyStatTimeLabel),
+              _WeekStat(emoji: '📘', value: l10n.weeklyStatLessonsValue, label: l10n.weeklyStatLessonsLabel),
+              _WeekStat(emoji: '⭐', value: l10n.weeklyStatStarsValue, label: l10n.weeklyStatStarsLabel),
+              _WeekStat(emoji: '🏆', value: l10n.weeklyStatBadgeValue, label: l10n.weeklyStatBadgeLabel),
             ],
           ),
 
@@ -193,7 +196,7 @@ class WeeklyReportScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Next week suggestion',
+                        l10n.weeklyNextWeekTitle,
                         style: GoogleFonts.nunito(
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
@@ -202,7 +205,7 @@ class WeeklyReportScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        "Try adding a weekend session — Maya is most engaged on Saturdays!",
+                        l10n.weeklyNextWeekText,
                         style: GoogleFonts.nunito(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
@@ -228,10 +231,10 @@ class _Highlight {
   const _Highlight(this.emoji, this.text);
 }
 
-const _highlights = [
-  _Highlight('📖', 'Finished the Whales of the Deep quest — first time in under 8 minutes!'),
-  _Highlight('🔢', 'Got 4/4 on the counting quiz. No hints needed!'),
-  _Highlight('🔥', 'Kept a 7-day streak going — her longest ever!'),
+List<_Highlight> _highlightsFor(AppLocalizations l10n) => [
+  _Highlight('📖', l10n.weeklyHighlight1),
+  _Highlight('🔢', l10n.weeklyHighlight2),
+  _Highlight('🔥', l10n.weeklyHighlight3),
 ];
 
 class _WeekStat extends StatelessWidget {

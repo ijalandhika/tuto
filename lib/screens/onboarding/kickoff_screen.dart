@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/animations.dart';
 import '../../widgets/icon.dart';
 
@@ -17,6 +18,7 @@ class KickoffScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(
         gradient: RadialGradient(
@@ -40,7 +42,7 @@ class KickoffScreen extends StatelessWidget {
               ),
               const SizedBox(height: 14),
               Text(
-                'WELCOME TO TUTO',
+                l10n.kickoffEyebrow,
                 style: GoogleFonts.nunito(
                   fontSize: 13,
                   fontWeight: FontWeight.w900,
@@ -50,7 +52,7 @@ class KickoffScreen extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                "Let's get you\nset up!",
+                l10n.kickoffTitle,
                 style: GoogleFonts.nunito(
                   fontSize: 32,
                   fontWeight: FontWeight.w900,
@@ -61,7 +63,7 @@ class KickoffScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                'Who\'s holding the phone right now?',
+                l10n.kickoffSubtitle,
                 style: GoogleFonts.nunito(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -74,8 +76,8 @@ class KickoffScreen extends StatelessWidget {
 
               _RoleCard(
                 emoji: '👋',
-                title: "I'm a grown-up",
-                subtitle: 'Set up an account & add your kid',
+                title: l10n.kickoffGrownupTitle,
+                subtitle: l10n.kickoffGrownupSubtitle,
                 bgColor: Colors.white,
                 iconBg: LumioColors.accentSoft,
                 borderColor: LumioColors.borderStrong,
@@ -84,8 +86,8 @@ class KickoffScreen extends StatelessWidget {
               const SizedBox(height: 12),
               _RoleCard(
                 emoji: '✨',
-                title: "I'm a kid",
-                subtitle: 'My grown-up already set me up',
+                title: l10n.kickoffKidTitle,
+                subtitle: l10n.kickoffKidSubtitle,
                 bgColor: LumioColors.accentSoft,
                 iconBg: Colors.white,
                 borderColor: LumioColors.accent,
@@ -98,7 +100,7 @@ class KickoffScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Already have an account? ',
+                    l10n.kickoffHaveAccount,
                     style: GoogleFonts.nunito(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
@@ -106,7 +108,7 @@ class KickoffScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Log in',
+                    l10n.kickoffLogIn,
                     style: GoogleFonts.nunito(
                       fontSize: 12,
                       fontWeight: FontWeight.w800,

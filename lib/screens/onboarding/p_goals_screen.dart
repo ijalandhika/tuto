@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import '../../widgets/icon.dart';
 import 'onboarding_widgets.dart';
@@ -22,20 +23,22 @@ class _Goal {
   const _Goal(this.emoji, this.title, this.sub);
 }
 
-const _goals = [
-  _Goal('📖', 'Build reading skills', 'Stories, phonics & more'),
-  _Goal('🔬', 'Stay curious', 'Science, nature & wonder'),
-  _Goal('🔢', 'Love maths', 'Numbers made fun'),
-  _Goal('⏱', 'Less screen guilt', 'Quality learning time'),
-  _Goal('💪', 'Build confidence', 'Try, learn, grow'),
-  _Goal('🌍', 'Explore the world', 'Geography & cultures'),
-];
+List<_Goal> _goalsFor(AppLocalizations l10n) => [
+      _Goal('📖', l10n.goalReadingTitle, l10n.goalReadingSub),
+      _Goal('🔬', l10n.goalCuriousTitle, l10n.goalCuriousSub),
+      _Goal('🔢', l10n.goalMathsTitle, l10n.goalMathsSub),
+      _Goal('⏱', l10n.goalScreenTitle, l10n.goalScreenSub),
+      _Goal('💪', l10n.goalConfidenceTitle, l10n.goalConfidenceSub),
+      _Goal('🌍', l10n.goalWorldTitle, l10n.goalWorldSub),
+    ];
 
 class _PGoalsScreenState extends State<PGoalsScreen> {
   final _selected = <int>{};
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final goals = _goalsFor(l10n);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
       child: Column(
@@ -46,7 +49,7 @@ class _PGoalsScreenState extends State<PGoalsScreen> {
           const SizedBox(height: 24),
 
           Text(
-            'LEARNING GOALS',
+            l10n.pGoalsEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -56,7 +59,7 @@ class _PGoalsScreenState extends State<PGoalsScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'What matters most\nto your family?',
+            l10n.pGoalsTitle,
             style: GoogleFonts.nunito(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -66,7 +69,7 @@ class _PGoalsScreenState extends State<PGoalsScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Pick all that apply. Tuto will personalise the experience.',
+            l10n.pGoalsSubtitle,
             style: GoogleFonts.nunito(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -75,8 +78,8 @@ class _PGoalsScreenState extends State<PGoalsScreen> {
           ),
           const SizedBox(height: 24),
 
-          ...List.generate(_goals.length, (i) {
-            final g = _goals[i];
+          ...List.generate(goals.length, (i) {
+            final g = goals[i];
             final sel = _selected.contains(i);
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
@@ -166,7 +169,7 @@ class _PGoalsScreenState extends State<PGoalsScreen> {
             variant: LumioButtonVariant.primary,
             full: true,
             onPressed: _selected.isNotEmpty ? widget.onNext : null,
-            child: const Text('Continue →'),
+            child: Text(l10n.actionContinue),
           ),
         ],
       ),

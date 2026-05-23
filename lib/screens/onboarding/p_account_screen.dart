@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import 'onboarding_widgets.dart';
 
@@ -12,6 +13,7 @@ class PAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
       child: Column(
@@ -22,7 +24,7 @@ class PAccountScreen extends StatelessWidget {
           const SizedBox(height: 24),
 
           Text(
-            'CREATE ACCOUNT',
+            l10n.pAccountEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -32,7 +34,7 @@ class PAccountScreen extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            "Let's set up your\nparent account",
+            l10n.pAccountTitle,
             style: GoogleFonts.nunito(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -42,15 +44,18 @@ class PAccountScreen extends StatelessWidget {
           ),
           const SizedBox(height: 28),
 
-          const LumioTextField(label: 'Your name', hint: 'e.g. Sarah'),
+          LumioTextField(
+              label: l10n.pAccountNameLabel, hint: l10n.pAccountNameHint),
           const SizedBox(height: 14),
-          const LumioTextField(
-              label: 'Email address',
-              hint: 'sarah@example.com',
+          LumioTextField(
+              label: l10n.pAccountEmailLabel,
+              hint: l10n.pAccountEmailHint,
               keyboardType: TextInputType.emailAddress),
           const SizedBox(height: 14),
-          const LumioTextField(
-              label: 'Password', hint: '8+ characters', obscure: true),
+          LumioTextField(
+              label: l10n.pAccountPasswordLabel,
+              hint: l10n.pAccountPasswordHint,
+              obscure: true),
           const SizedBox(height: 28),
 
           Row(
@@ -59,7 +64,7 @@ class PAccountScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Text(
-                  'or continue with',
+                  l10n.pAccountOrContinue,
                   style: GoogleFonts.nunito(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -74,9 +79,13 @@ class PAccountScreen extends StatelessWidget {
 
           Row(
             children: [
-              Expanded(child: _SsoButton(label: 'Apple', icon: '🍎', onTap: onNext)),
+              Expanded(
+                  child: _SsoButton(
+                      label: l10n.ssoApple, icon: '🍎', onTap: onNext)),
               const SizedBox(width: 10),
-              Expanded(child: _SsoButton(label: 'Google', icon: '🔵', onTap: onNext)),
+              Expanded(
+                  child: _SsoButton(
+                      label: l10n.ssoGoogle, icon: '🔵', onTap: onNext)),
             ],
           ),
           const SizedBox(height: 28),
@@ -85,12 +94,12 @@ class PAccountScreen extends StatelessWidget {
             variant: LumioButtonVariant.primary,
             full: true,
             onPressed: onNext,
-            child: const Text('Continue →'),
+            child: Text(l10n.actionContinue),
           ),
           const SizedBox(height: 12),
           Center(
             child: Text(
-              'By continuing you agree to Tuto\'s Terms & Privacy Policy.',
+              l10n.pAccountTerms,
               style: GoogleFonts.nunito(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,

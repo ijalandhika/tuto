@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import 'onboarding_widgets.dart';
 
@@ -19,6 +20,7 @@ class _PKidScreenState extends State<PKidScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
       child: Column(
@@ -29,7 +31,7 @@ class _PKidScreenState extends State<PKidScreen> {
           const SizedBox(height: 24),
 
           Text(
-            'ABOUT YOUR CHILD',
+            l10n.pKidEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -39,7 +41,7 @@ class _PKidScreenState extends State<PKidScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            "Tell us a bit about\nyour little learner",
+            l10n.pKidTitle,
             style: GoogleFonts.nunito(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -49,11 +51,12 @@ class _PKidScreenState extends State<PKidScreen> {
           ),
           const SizedBox(height: 28),
 
-          const LumioTextField(label: "Child's name", hint: 'e.g. Maya'),
+          LumioTextField(
+              label: l10n.pKidNameLabel, hint: l10n.pKidNameHint),
           const SizedBox(height: 24),
 
           Text(
-            'Age',
+            l10n.pKidAgeLabel,
             style: GoogleFonts.nunito(
               fontSize: 13,
               fontWeight: FontWeight.w800,
@@ -123,7 +126,7 @@ class _PKidScreenState extends State<PKidScreen> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    "Tuto adapts lessons to your child's age so content feels just right — not too easy, not too hard.",
+                    l10n.pKidTip,
                     style: GoogleFonts.nunito(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
@@ -142,7 +145,7 @@ class _PKidScreenState extends State<PKidScreen> {
             variant: LumioButtonVariant.primary,
             full: true,
             onPressed: _selectedAge != null ? widget.onNext : null,
-            child: const Text('Continue →'),
+            child: Text(l10n.actionContinue),
           ),
         ],
       ),

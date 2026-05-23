@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/icon.dart';
 import '../widgets/top_bar.dart';
 
@@ -9,6 +10,7 @@ class MeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -46,7 +48,7 @@ class MeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Maya, 8',
+                  l10n.meName,
                   style: GoogleFonts.nunito(
                     fontSize: 26,
                     fontWeight: FontWeight.w900,
@@ -55,7 +57,7 @@ class MeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Learning since April · Level 4',
+                  l10n.meSubtitle,
                   style: GoogleFonts.nunito(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -70,23 +72,35 @@ class MeScreen extends StatelessWidget {
 
           // 3-stat grid
           Row(
-            children: const [
-              _MeStat(emoji: '🔥', value: '7', label: 'STREAK'),
-              SizedBox(width: 8),
-              _MeStat(emoji: '★', value: '24', label: 'STARS'),
-              SizedBox(width: 8),
-              _MeStat(emoji: '🏆', value: '4', label: 'BADGES'),
+            children: [
+              _MeStat(emoji: '🔥', value: '7', label: l10n.meStatStreak),
+              const SizedBox(width: 8),
+              _MeStat(emoji: '★', value: '24', label: l10n.meStatStars),
+              const SizedBox(width: 8),
+              _MeStat(emoji: '🏆', value: '4', label: l10n.meStatBadges),
             ],
           ),
 
           const SizedBox(height: 22),
 
-          _SectionLabel(label: 'SETTINGS'),
+          _SectionLabel(label: l10n.meSettingsLabel),
           const SizedBox(height: 8),
-          _SettingRow(emoji: '🎨', title: 'Change avatar', sub: 'Pick a new buddy'),
-          _SettingRow(emoji: '🔊', title: "Tuto's voice", sub: 'Cheery'),
-          _SettingRow(emoji: '🎵', title: 'Sounds & music', sub: 'On'),
-          _SettingRow(emoji: '🌙', title: 'Bedtime mode', sub: 'Off'),
+          _SettingRow(
+              emoji: '🎨',
+              title: l10n.meSettingAvatar,
+              sub: l10n.meSettingAvatarSub),
+          _SettingRow(
+              emoji: '🔊',
+              title: l10n.meSettingVoice,
+              sub: l10n.meSettingVoiceSub),
+          _SettingRow(
+              emoji: '🎵',
+              title: l10n.meSettingSounds,
+              sub: l10n.meSettingSoundsSub),
+          _SettingRow(
+              emoji: '🌙',
+              title: l10n.meSettingBedtime,
+              sub: l10n.meSettingBedtimeSub),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/animations.dart';
 import '../../widgets/button.dart';
 
@@ -12,6 +13,7 @@ class KHelloScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -38,7 +40,7 @@ class KHelloScreen extends StatelessWidget {
               const SizedBox(height: 24),
 
               Text(
-                "Hi Maya! I'm Tuto 🐢",
+                l10n.kHelloTitle,
                 style: GoogleFonts.nunito(
                   fontSize: 30,
                   fontWeight: FontWeight.w900,
@@ -49,7 +51,7 @@ class KHelloScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                "I'm so excited to go on adventures\nand learn things together!",
+                l10n.kHelloSubtitle,
                 style: GoogleFonts.nunito(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -65,11 +67,11 @@ class KHelloScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _FunChip(emoji: '⭐', label: 'Stars to earn'),
+                  _FunChip(emoji: '⭐', label: l10n.kHelloChipStars),
                   const SizedBox(width: 8),
-                  _FunChip(emoji: '🏆', label: 'Badges to collect'),
+                  _FunChip(emoji: '🏆', label: l10n.kHelloChipBadges),
                   const SizedBox(width: 8),
-                  _FunChip(emoji: '🗺', label: 'Quests ahead'),
+                  _FunChip(emoji: '🗺', label: l10n.kHelloChipQuests),
                 ],
               ),
 
@@ -79,7 +81,7 @@ class KHelloScreen extends StatelessWidget {
                 variant: LumioButtonVariant.primary,
                 full: true,
                 onPressed: onNext,
-                child: const Text("Let's go! →"),
+                child: Text(l10n.kHelloCta),
               ),
             ],
           ),

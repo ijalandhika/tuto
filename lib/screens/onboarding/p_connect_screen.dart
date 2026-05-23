@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../design/tokens.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/button.dart';
 import '../../widgets/icon.dart';
 import 'onboarding_widgets.dart';
@@ -41,6 +42,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(22, 0, 22, 32),
       child: Column(
@@ -51,7 +53,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
           const SizedBox(height: 8),
 
           Text(
-            'ALMOST THERE',
+            l10n.pConnectEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -61,7 +63,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            "Connect Maya's\naccount.",
+            l10n.pConnectTitle,
             style: GoogleFonts.nunito(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -71,7 +73,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Pick how Maya will use Tuto.',
+            l10n.pConnectSubtitle,
             style: GoogleFonts.nunito(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -109,7 +111,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'Maya has her own device',
+                      l10n.pConnectDeviceTitle,
                       style: GoogleFonts.nunito(
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
@@ -120,7 +122,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Open Tuto on her phone/tablet, tap "I\'m a kid", and enter this code:',
+                  l10n.pConnectDeviceDesc,
                   style: GoogleFonts.nunito(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -161,7 +163,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Expires in 10 min · ',
+                            l10n.pConnectExpires,
                             style: GoogleFonts.nunito(
                               fontSize: 11,
                               fontWeight: FontWeight.w700,
@@ -171,7 +173,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                           GestureDetector(
                             onTap: _regenerate,
                             child: Text(
-                              'refresh',
+                              l10n.pConnectRefresh,
                               style: GoogleFonts.nunito(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w800,
@@ -195,7 +197,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                         variant: LumioButtonVariant.soft,
                         full: true,
                         onPressed: widget.onCode,
-                        child: const Text('Waiting for Maya…'),
+                        child: Text(l10n.pConnectWaiting),
                       ),
                     ),
                   ],
@@ -214,7 +216,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    'OR',
+                    l10n.pConnectOr,
                     style: GoogleFonts.nunito(
                       fontSize: 11,
                       fontWeight: FontWeight.w800,
@@ -266,7 +268,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Maya will use this phone',
+                          l10n.pConnectPassTitle,
                           style: GoogleFonts.nunito(
                             fontSize: 15,
                             fontWeight: FontWeight.w900,
@@ -274,7 +276,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                           ),
                         ),
                         Text(
-                          'Pass it to her now — we\'ll set her up',
+                          l10n.pConnectPassDesc,
                           style: GoogleFonts.nunito(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -320,7 +322,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Invite another grown-up',
+                        l10n.pConnectInviteTitle,
                         style: GoogleFonts.nunito(
                           fontSize: 13,
                           fontWeight: FontWeight.w900,
@@ -328,7 +330,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                         ),
                       ),
                       Text(
-                        "Other parent, grandparent or guardian — they'll see Maya's progress too.",
+                        l10n.pConnectInviteDesc,
                         style: GoogleFonts.nunito(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
@@ -342,7 +344,7 @@ class _PConnectScreenState extends State<PConnectScreen> {
                 GestureDetector(
                   onTap: widget.onPassPhone,
                   child: Text(
-                    'Skip',
+                    l10n.pConnectSkip,
                     style: GoogleFonts.nunito(
                       fontSize: 12,
                       fontWeight: FontWeight.w900,

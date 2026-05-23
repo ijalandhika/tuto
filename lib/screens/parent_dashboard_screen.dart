@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/icon.dart';
 
 
@@ -13,6 +14,7 @@ class ParentDashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -39,7 +41,7 @@ class ParentDashboardScreen extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  "Hey, Parent 👋",
+                  l10n.parentDashGreeting,
                   style: GoogleFonts.nunito(
                     fontSize: 24,
                     fontWeight: FontWeight.w900,
@@ -53,7 +55,7 @@ class ParentDashboardScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 52),
             child: Text(
-              "Here's how Maya is doing this week.",
+              l10n.parentDashSubtitle,
               style: GoogleFonts.nunito(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -66,14 +68,11 @@ class ParentDashboardScreen extends StatelessWidget {
           // 3-stat row
           Row(
             children: [
-              _StatCard(
-                  emoji: '⭐', value: '24', label: 'Stars', color: LumioColors.warning),
+              _StatCard(emoji: '⭐', value: '24', label: l10n.parentDashStatStars, color: LumioColors.warning),
               const SizedBox(width: 10),
-              _StatCard(
-                  emoji: '🔥', value: '7', label: 'Day streak', color: LumioColors.magical),
+              _StatCard(emoji: '🔥', value: '7', label: l10n.parentDashStatStreak, color: LumioColors.magical),
               const SizedBox(width: 10),
-              _StatCard(
-                  emoji: '📘', value: '3', label: 'Lessons', color: LumioColors.accent),
+              _StatCard(emoji: '📘', value: '3', label: l10n.parentDashStatLessons, color: LumioColors.accent),
             ],
           ),
           const SizedBox(height: 20),
@@ -91,7 +90,7 @@ class ParentDashboardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'MINUTES THIS WEEK',
+                  l10n.parentDashMinutesLabel,
                   style: GoogleFonts.nunito(
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
@@ -101,7 +100,7 @@ class ParentDashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '68 min total',
+                  l10n.parentDashMinutesTotal,
                   style: GoogleFonts.nunito(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
@@ -128,7 +127,7 @@ class ParentDashboardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'SUBJECTS',
+                  l10n.parentDashSubjectsLabel,
                   style: GoogleFonts.nunito(
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
@@ -137,11 +136,11 @@ class ParentDashboardScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 14),
-                _SubjectBar(label: 'Reading', emoji: '📖', value: 0.72, color: LumioColors.accent),
+                _SubjectBar(label: l10n.subjectReading, emoji: '📖', value: 0.72, color: LumioColors.accent),
                 const SizedBox(height: 12),
-                _SubjectBar(label: 'Maths', emoji: '🔢', value: 0.55, color: LumioColors.success),
+                _SubjectBar(label: l10n.parentDashSubjectMaths, emoji: '🔢', value: 0.55, color: LumioColors.success),
                 const SizedBox(height: 12),
-                _SubjectBar(label: 'Science', emoji: '🔬', value: 0.38, color: LumioColors.magical),
+                _SubjectBar(label: l10n.subjectScience, emoji: '🔬', value: 0.38, color: LumioColors.magical),
               ],
             ),
           ),
@@ -150,22 +149,22 @@ class ParentDashboardScreen extends StatelessWidget {
           // Action rows
           _ActionRow(
             emoji: '📈',
-            title: 'Weekly report',
-            subtitle: 'Full breakdown + Tuto insights',
+            title: l10n.parentDashWeeklyTitle,
+            subtitle: l10n.parentDashWeeklySub,
             onTap: onWeekly,
           ),
           const SizedBox(height: 10),
           _ActionRow(
             emoji: '⏱',
-            title: 'Daily limit',
-            subtitle: '15 min / day · Mon–Fri',
+            title: l10n.parentDashLimitTitle,
+            subtitle: l10n.parentDashLimitSub,
             onTap: () {},
           ),
           const SizedBox(height: 10),
           _ActionRow(
             emoji: '🎯',
-            title: 'Learning goals',
-            subtitle: 'Reading, Curiosity, Maths',
+            title: l10n.parentDashGoalsTitle,
+            subtitle: l10n.parentDashGoalsSub,
             onTap: () {},
           ),
         ],
@@ -227,24 +226,25 @@ class _StatCard extends StatelessWidget {
 class _BarChart extends StatelessWidget {
   const _BarChart();
 
-  static const _data = [
-    (day: 'M', min: 10),
-    (day: 'T', min: 15),
-    (day: 'W', min: 8),
-    (day: 'T', min: 12),
-    (day: 'F', min: 15),
-    (day: 'S', min: 5),
-    (day: 'S', min: 3),
-  ];
+  static const _mins = [10, 15, 8, 12, 15, 5, 3];
 
   @override
   Widget build(BuildContext context) {
-    final maxVal = _data.map((d) => d.min).reduce((a, b) => a > b ? a : b);
+    final l10n = AppLocalizations.of(context);
+    final days = [
+      l10n.dayInitialMon, l10n.dayInitialTue, l10n.dayInitialWed,
+      l10n.dayInitialThu, l10n.dayInitialFri, l10n.dayInitialSat,
+      l10n.dayInitialSun,
+    ];
+    final maxVal = _mins.reduce((a, b) => a > b ? a : b);
+    final data = List.generate(_mins.length, (i) => (day: days[i], min: _mins[i]));
     return SizedBox(
       height: 80,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: _data.map((d) {
+        children: data.asMap().entries.map((e) {
+          final i = e.key;
+          final d = e.value;
           final frac = d.min / maxVal;
           return Expanded(
             child: Padding(
@@ -257,7 +257,7 @@ class _BarChart extends StatelessWidget {
                       heightFactor: frac,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: d.day == 'T' && d.min == 15
+                          color: i == 1
                               ? LumioColors.accent
                               : LumioColors.accentSoft,
                           borderRadius: BorderRadius.circular(6),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/animations.dart';
 import '../widgets/button.dart';
 import '../widgets/icon.dart';
@@ -16,12 +17,12 @@ class _Answer {
   const _Answer(this.letter, this.text, this.correct);
 }
 
-const _answers = [
-  _Answer('A', 'Five 🌟', true),
-  _Answer('B', 'Four', false),
-  _Answer('C', 'Six', false),
-  _Answer('D', 'Three', false),
-];
+List<_Answer> _answersFor(AppLocalizations l10n) => [
+      _Answer('A', l10n.quizAnswerFive, true),
+      _Answer('B', l10n.quizAnswerFour, false),
+      _Answer('C', l10n.quizAnswerSix, false),
+      _Answer('D', l10n.quizAnswerThree, false),
+    ];
 
 class QuizScreen extends StatefulWidget {
   final VoidCallback onBack;
@@ -58,6 +59,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final answers = _answersFor(l10n);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -69,7 +72,7 @@ class _QuizScreenState extends State<QuizScreen> {
           const SizedBox(height: 18),
 
           Text(
-            'QUESTION 3 OF 4',
+            l10n.quizEyebrow,
             style: GoogleFonts.nunito(
               fontSize: 11,
               fontWeight: FontWeight.w800,
@@ -79,7 +82,7 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'How many stars did we count?',
+            l10n.quizQuestion,
             style: GoogleFonts.nunito(
               fontSize: 26,
               fontWeight: FontWeight.w900,
@@ -97,7 +100,7 @@ class _QuizScreenState extends State<QuizScreen> {
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
             childAspectRatio: 1.4,
-            children: _answers.map((a) {
+            children: answers.map((a) {
               final tileState = _tileState(a);
               return _AnswerTile(
                 answer: a,
@@ -121,7 +124,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   borderRadius: BorderRadius.circular(LumioRadius.md),
                 ),
                 child: Text(
-                  'Almost! Let\'s try again 💛',
+                  l10n.quizGentle,
                   style: GoogleFonts.nunito(
                     fontSize: 15,
                     fontWeight: FontWeight.w800,
@@ -142,7 +145,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   borderRadius: BorderRadius.circular(LumioRadius.md),
                 ),
                 child: Text(
-                  "That's right! ✨",
+                  l10n.quizCorrect,
                   style: GoogleFonts.nunito(
                     fontSize: 15,
                     fontWeight: FontWeight.w800,
@@ -164,7 +167,7 @@ class _QuizScreenState extends State<QuizScreen> {
               const SizedBox(width: 10),
               LumioButton(
                 variant: LumioButtonVariant.soft,
-                child: const Text('Hint'),
+                child: Text(l10n.quizHint),
               ),
             ],
           ),

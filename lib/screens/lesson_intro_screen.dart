@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design/tokens.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/animations.dart';
 import '../widgets/button.dart';
 import '../widgets/icon.dart';
@@ -21,6 +22,7 @@ class LessonIntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
       child: Column(
@@ -47,7 +49,7 @@ class LessonIntroScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'LESSON 3 · MATH',
+                  l10n.lessonEyebrow,
                   style: GoogleFonts.nunito(
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
@@ -57,7 +59,7 @@ class LessonIntroScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Counting stars',
+                  l10n.lessonTitle,
                   style: GoogleFonts.nunito(
                     fontSize: 26,
                     fontWeight: FontWeight.w900,
@@ -75,25 +77,25 @@ class LessonIntroScreen extends StatelessWidget {
                   spacing: 8,
                   runSpacing: 8,
                   alignment: WrapAlignment.center,
-                  children: const [
+                  children: [
                     LumioChip(
                       variant: LumioChipVariant.defaultChip,
                       size: LumioChipSize.sm,
-                      icon: Text('⏱', style: TextStyle(fontSize: 12)),
-                      label: '5 min',
+                      icon: const Text('⏱', style: TextStyle(fontSize: 12)),
+                      label: l10n.lessonChipTime,
                     ),
                     LumioChip(
                       variant: LumioChipVariant.star,
                       size: LumioChipSize.sm,
-                      icon: Text('★',
+                      icon: const Text('★',
                           style: TextStyle(
                               fontSize: 12, color: Color(0xFFE0A310))),
-                      label: '3 stars to earn',
+                      label: l10n.lessonChipStars,
                     ),
                     LumioChip(
                       variant: LumioChipVariant.bonus,
                       size: LumioChipSize.sm,
-                      label: 'New words: 4',
+                      label: l10n.lessonChipWords,
                     ),
                   ],
                 ),
@@ -102,10 +104,9 @@ class LessonIntroScreen extends StatelessWidget {
           ),
 
           const SizedBox(height: 18),
-          const SpeechBubble(
+          SpeechBubble(
             speaking: true,
-            text:
-                "Let's count things together. I'll go first, then it's your turn!",
+            text: l10n.lessonSpeech,
           ),
           const SizedBox(height: 22),
 
@@ -123,7 +124,7 @@ class LessonIntroScreen extends StatelessWidget {
                   variant: LumioButtonVariant.primary,
                   full: true,
                   onPressed: onNext,
-                  child: const Text("Let's start!"),
+                  child: Text(l10n.lessonCta),
                 ),
               ),
             ],
