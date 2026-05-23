@@ -4,30 +4,44 @@ import 'dart:ui' show PlatformDispatcher;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'design/tokens.dart';
-import 'l10n/app_localizations.dart';
-import 'screens/badges_screen.dart';
-import 'screens/lesson_intro_screen.dart';
-import 'screens/library_screen.dart';
-import 'screens/map_screen.dart';
-import 'screens/me_screen.dart';
-import 'screens/mini_game_screen.dart';
-import 'screens/onboarding/k_avatar_screen.dart';
-import 'screens/onboarding/k_enter_code_screen.dart';
-import 'screens/onboarding/k_hello_screen.dart';
-import 'screens/onboarding/k_interests_screen.dart';
-import 'screens/onboarding/k_ready_screen.dart';
-import 'screens/onboarding/kickoff_screen.dart';
-import 'screens/onboarding/p_account_screen.dart';
-import 'screens/onboarding/p_connect_screen.dart';
-import 'screens/onboarding/p_goals_screen.dart';
-import 'screens/onboarding/p_kid_screen.dart';
-import 'screens/onboarding/p_plan_screen.dart';
-import 'screens/parent_dashboard_screen.dart';
-import 'screens/parent_gate_screen.dart';
-import 'screens/quiz_screen.dart';
-import 'screens/reward_screen.dart';
-import 'screens/weekly_report_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:tuto/data/repositories/content_repository.dart';
+import 'package:tuto/data/repositories/kid_repository.dart';
+import 'package:tuto/data/repositories/parent_repository.dart';
+import 'package:tuto/data/repositories/settings_repository.dart';
+import 'package:tuto/design/tokens.dart';
+import 'package:tuto/l10n/app_localizations.dart';
+import 'package:tuto/ui/features/app_view_model.dart';
+import 'package:tuto/ui/features/badges/view_models/badges_view_model.dart';
+import 'package:tuto/ui/features/badges/views/badges_screen.dart';
+import 'package:tuto/ui/features/lesson/view_models/lesson_view_model.dart';
+import 'package:tuto/ui/features/lesson/views/lesson_intro_screen.dart';
+import 'package:tuto/ui/features/lesson/views/mini_game_screen.dart';
+import 'package:tuto/ui/features/lesson/views/quiz_screen.dart';
+import 'package:tuto/ui/features/lesson/views/reward_screen.dart';
+import 'package:tuto/ui/features/library/view_models/library_view_model.dart';
+import 'package:tuto/ui/features/library/views/library_screen.dart';
+import 'package:tuto/ui/features/map/view_models/map_view_model.dart';
+import 'package:tuto/ui/features/map/views/map_screen.dart';
+import 'package:tuto/ui/features/me/view_models/me_view_model.dart';
+import 'package:tuto/ui/features/me/views/me_screen.dart';
+import 'package:tuto/ui/features/onboarding/view_models/onboarding_view_model.dart';
+import 'package:tuto/ui/features/onboarding/views/k_avatar_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/k_enter_code_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/k_hello_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/k_interests_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/k_ready_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/kickoff_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/p_account_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/p_connect_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/p_goals_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/p_kid_screen.dart';
+import 'package:tuto/ui/features/onboarding/views/p_plan_screen.dart';
+import 'package:tuto/ui/features/parent/view_models/parent_dash_view_model.dart';
+import 'package:tuto/ui/features/parent/view_models/weekly_report_view_model.dart';
+import 'package:tuto/ui/features/parent/views/parent_dashboard_screen.dart';
+import 'package:tuto/ui/features/parent/views/parent_gate_screen.dart';
+import 'package:tuto/ui/features/parent/views/weekly_report_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,7 +85,26 @@ class TutoApp extends StatelessWidget {
         textTheme: GoogleFonts.nunitoTextTheme(),
         useMaterial3: true,
       ),
-      home: const _AppShell(),
+      home: MultiProvider(
+        providers: [
+          // Repositories
+          Provider(create: (_) => ContentRepository()),
+          Provider(create: (_) => KidRepository()),
+          Provider(create: (_) => ParentRepository()),
+          Provider(create: (_) => SettingsRepository()),
+          // App-wide ViewModels
+          ChangeNotifierProvider(create: (c) => AppViewModel(c.read<KidRepository>())),
+          ChangeNotifierProvider(create: (c) => MapViewModel(c.read<ContentRepository>())),
+          ChangeNotifierProvider(create: (_) => LessonViewModel()),
+          ChangeNotifierProvider(create: (c) => LibraryViewModel(c.read<ContentRepository>())),
+          ChangeNotifierProvider(create: (c) => BadgesViewModel(c.read<ContentRepository>())),
+          ChangeNotifierProvider(create: (c) => MeViewModel(c.read<KidRepository>(), c.read<SettingsRepository>())),
+          ChangeNotifierProvider(create: (c) => ParentDashViewModel(c.read<ParentRepository>())),
+          ChangeNotifierProvider(create: (c) => WeeklyReportViewModel(c.read<ParentRepository>())),
+          ChangeNotifierProvider(create: (_) => OnboardingViewModel()),
+        ],
+        child: const _AppShell(),
+      ),
     );
   }
 }
